@@ -23,7 +23,9 @@ $SPEC{decode_qrcode} = {
     ],
 };
 sub decode_qrcode {
-    require Image::DecodeQR;
+    return [500, "Currently Image::DecodeQR cannot be built"];
+
+    #require Image::DecodeQR;
 
     my %args = @_;
 
