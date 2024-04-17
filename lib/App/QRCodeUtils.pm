@@ -72,7 +72,7 @@ sub gen_qrcode {
     my $filename = $args{filename};
     unless (defined $filename) {
         require File::Temp;
-        (undef, $filename) = File::Temp::tempfile("qrcodeXXXXXXXXX", SUFFIX=>".$format");
+        (undef, $filename) = File::Temp::tempfile("qrcodeXXXXXXXXX", TMPDIR=>1, SUFFIX=>".$format");
     }
 
     my $res = QRCode::Any::encode_qrcode(
