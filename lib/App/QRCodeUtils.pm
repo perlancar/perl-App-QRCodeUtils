@@ -67,7 +67,7 @@ sub gen_qrcode {
     require QRCode::Any;
 
     my %args = @_;
-    my $format = $args{format};
+    my $format = $args{format} // 'png';
 
     my $filename = $args{filename};
     unless (defined $filename) {
@@ -85,7 +85,7 @@ sub gen_qrcode {
     require Desktop::Open;
     Desktop::Open::open_desktop($filename);
 
-    [200];
+    [200, "OK", undef, {"func.filename"=>$filename}];
 }
 
 1;
