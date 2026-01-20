@@ -59,6 +59,11 @@ MARKDOWN
             schema => ['str*', in=>[qw/png html txt/]],
             default => 'png',
         },
+        level => {
+            summary => 'Error correction level',
+            schema => ['str*', in=>['L', 'M', 'Q', 'H']],
+            default => 'M',
+        },
     },
     examples => [
     ],
@@ -79,6 +84,7 @@ sub gen_qrcode {
         format => $format,
         text => $args{text},
         filename => $filename,
+        level => $args{level},
     );
     return $res unless $res->[0] == 200;
 
