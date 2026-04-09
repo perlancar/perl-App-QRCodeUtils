@@ -103,6 +103,24 @@ sub gen_qrcode {
     [200, "OK", undef, {"func.filename"=>$filename}];
 }
 
+$SPEC{calc_qrcode_module_version} = {
+    v => 1.1,
+    summary => 'Calculate the version required to encode a text',
+    args => {
+        %argspec0_text,
+        %argspecopt_level,
+    },
+};
+sub calc_qrcode_module_version {
+    my %args = @_;
+    my $text  = $args{text};
+    my $level = $args{level} // 'M';
+
+    # wait for TableData::QRCode::Capacity first
+
+    [501, "Not yet implemented"];
+}
+
 1;
 #ABSTRACT: Utilities related to QR Code
 
