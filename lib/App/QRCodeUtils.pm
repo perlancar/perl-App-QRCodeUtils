@@ -11,6 +11,23 @@ use warnings;
 
 our %SPEC;
 
+our %argspec0_text = (
+    text => {
+        schema => 'str*',
+        req => 1,
+        pos => 0,
+    },
+);
+
+our %argspecopt_level = (
+    level => {
+        summary => 'Error correction level',
+        schema => ['str*', in=>['L', 'M', 'Q', 'H']],
+        default => 'M',
+        cmdline_aliases => {l=>{}},
+    },
+);
+
 $SPEC{decode_qrcode} = {
     v => 1.1,
     summary => 'Decode QR Code',
@@ -40,11 +57,7 @@ $SPEC{gen_qrcode} = {
     v => 1.1,
     summary => 'Generate QR Code and by default show it (or save it to a file)',
     args => {
-        text => {
-            schema => 'str*',
-            req => 1,
-            pos => 0,
-        },
+        %argspec0_text,
         filename => {
             schema => 'filename*',
             pos => 1,
@@ -59,11 +72,7 @@ MARKDOWN
             schema => ['str*', in=>[qw/png html txt/]],
             default => 'png',
         },
-        level => {
-            summary => 'Error correction level',
-            schema => ['str*', in=>['L', 'M', 'Q', 'H']],
-            default => 'M',
-        },
+        %argspecopt_level,
     },
     examples => [
     ],
